@@ -162,10 +162,13 @@ class Replay:
       prioritize_ends=False, delete_old_trajectories=True, config=None):
     self._directory = pathlib.Path(directory).expanduser()
     self._directory.mkdir(parents=True, exist_ok=True)
-    self._capacity = capacity
+    self._capacity = capacity #replay buffer에 얼마나 넣을꺼냐
     self._ongoing = ongoing
+    #에피소드 최대/최소 길이.
     self._minlen = minlen
     self._maxlen = maxlen
+    
+    # prioritize_ends: 에피소드의 끝부분을 우선적으로 샘플링할지 여부
     self._prioritize_ends = prioritize_ends
     self._random = np.random.RandomState()
     # filename -> key -> value_sequence
